@@ -1,13 +1,38 @@
 import { ReactElement, useRef } from 'react';
 import { MeshProps } from '@react-three/fiber';
-import { Mesh } from 'three';
 
-function Box(props: MeshProps): ReactElement {
-  const box = useRef<Mesh>(null);
+interface BoxProps {
+  width: number;
+  height: number;
+  depth: number;
+  widthSegments?: number;
+  heightSegments?: number;
+  depthSegments?: number;
+}
+
+type BoxArgs = [number, number, number, number, number, number];
+
+function Box({
+  width,
+  height,
+  depth,
+  widthSegments,
+  heightSegments,
+  depthSegments,
+  ...props
+}: MeshProps & BoxProps): ReactElement {
+  const args: BoxArgs = [
+    width,
+    height,
+    depth,
+    widthSegments || 1,
+    heightSegments || 1,
+    depthSegments || 1,
+  ];
   return (
-    <mesh {...props} ref={box}>
-      <boxGeometry args={[1, 1, 1]} />
-      <meshStandardMaterial color="orange" />
+    <mesh {...(props as MeshProps)}>
+      <boxGeometry args={args} />
+      <meshStandardMaterial />
     </mesh>
   );
 }
