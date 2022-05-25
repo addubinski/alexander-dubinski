@@ -9,7 +9,7 @@ const globalStyles = globalCss({
   'body, html, #root': {
     margin: 0,
     height: '100%',
-    font: '$roboto',
+    fontFamily: '$roboto',
   },
   canvas: {
     width: '100%',
