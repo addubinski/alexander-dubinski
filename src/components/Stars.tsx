@@ -5,8 +5,7 @@ import Circle from '../meshes/Circle';
 const RADIUS_DIVISORS = [450, 500, 700, 800];
 
 function Stars(): ReactElement {
-  const size = useThree((state) => state.size);
-  const viewport = useThree((state) => state.viewport);
+  const { size, viewport } = useThree();
   const starCount = Math.floor((size.height + size.width) / 10);
   const referenceDim = Math.min(viewport.height, viewport.width);
 
