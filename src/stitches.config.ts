@@ -1,6 +1,9 @@
 import { createStitches } from '@stitches/react';
 
-export const { theme, styled, globalCss } = createStitches({
+const headerWidth = 720;
+const headerHeight = 400;
+
+export const { styled, globalCss } = createStitches({
   theme: {
     colors: {
       blue500: '#2196F3',
@@ -13,6 +16,18 @@ export const { theme, styled, globalCss } = createStitches({
     },
     fonts: {
       roboto: "'Roboto', sans-serif",
+    },
+    sizes: {
+      headerWidth: `${headerWidth}px`,
+      headerHeight: `${headerHeight}px`,
+      thirdHeaderHeight: `${Math.floor(headerHeight / 3)}px`,
+    },
+    space: {
+      halfHeaderWidth: `${Math.floor(headerWidth / 2)}px`,
+      halfHeaderHeight: `${Math.floor(headerHeight / 2)}px`,
+    },
+    lineHeights: {
+      thirdHeaderHeight: `${Math.floor(headerHeight / 3)}px`,
     },
   },
 });
