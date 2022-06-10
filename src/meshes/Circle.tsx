@@ -1,22 +1,21 @@
-import { ReactElement } from 'react';
+import { ForwardedRef, forwardRef } from 'react';
 import { MeshProps } from '@react-three/fiber';
+import { Mesh } from 'three';
 
-interface CircleProps {
+export interface CircleProps extends MeshProps {
   radius: number;
   segments: number;
 }
 
-function Circle({
-  radius,
-  segments,
-  ...props
-}: MeshProps & CircleProps): ReactElement {
-  return (
-    <mesh {...(props as MeshProps)}>
-      <circleGeometry args={[radius, segments]} />
-      <meshStandardMaterial />
-    </mesh>
-  );
-}
+const Circle = forwardRef(
+  ({ radius, segments, ...props }: CircleProps, ref: ForwardedRef<Mesh>) => {
+    return (
+      <mesh {...(props as MeshProps)} ref={ref}>
+        <circleGeometry args={[radius, segments]} />
+        <meshStandardMaterial />
+      </mesh>
+    );
+  }
+);
 
 export default Circle;

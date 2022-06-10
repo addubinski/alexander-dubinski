@@ -1,6 +1,6 @@
 import { ReactElement } from 'react';
 import { useThree } from '@react-three/fiber';
-import Circle from '../meshes/Circle';
+import Star from '../meshes/Star';
 
 const RADIUS_DIVISORS = [450, 500, 700, 800];
 
@@ -15,9 +15,7 @@ function Stars(): ReactElement {
     const radius =
       referenceDim /
       RADIUS_DIVISORS[Math.floor(Math.random() * RADIUS_DIVISORS.length)];
-    return (
-      <Circle key={i} position={[x, y, 0]} radius={radius} segments={10} />
-    );
+    return <Star key={i} position={[x, y, 0]} radius={radius} segments={15} />;
   });
   return <>{stars}</>;
 }
