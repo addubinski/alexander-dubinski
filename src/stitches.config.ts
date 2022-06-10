@@ -1,7 +1,7 @@
 import { createStitches } from '@stitches/react';
 
 const headerWidth = 720;
-const headerHeight = 400;
+const headerHeight = 500;
 
 export const { styled, globalCss } = createStitches({
   theme: {

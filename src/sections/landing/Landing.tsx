@@ -12,10 +12,15 @@ const LandingContainer = styled('section', {
 });
 
 const Header = styled('header', {
-  fontSize: '4em',
+  fontSize: '5em',
   color: '$blue500',
   height: '$thirdHeaderHeight',
   lineHeight: '$thirdHeaderHeight',
+});
+
+const LandingButton = styled(Button, {
+  minWidth: '250px',
+  margin: '0 15px',
 });
 
 const ButtonContainer = styled('div', {
@@ -23,13 +28,27 @@ const ButtonContainer = styled('div', {
   lineHeight: '$thirdHeaderHeight',
 });
 
+const ImageContainer = styled('div', {
+  height: '$thirdHeaderHeight',
+});
+
+const LandingImage = styled('img', {
+  height: '100%',
+});
+
 function Landing(): ReactElement {
   return (
     <LandingContainer>
+      <ImageContainer>
+        <LandingImage
+          src={process.env.REACT_APP_LOGO_URL}
+          alt="Alexander Dubinski\'s personal logo"
+        />
+      </ImageContainer>
       <Header>Hi, my name is Alex</Header>
       <ButtonContainer>
-        <Button size="lg">Profile</Button>
-        <Button size="lg">Projects</Button>
+        <LandingButton size="lg">Profile</LandingButton>
+        <LandingButton size="lg">Projects</LandingButton>
       </ButtonContainer>
     </LandingContainer>
   );
