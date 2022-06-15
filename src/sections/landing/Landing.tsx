@@ -9,6 +9,8 @@ const LandingContainer = styled('section', {
   textAlign: 'center',
   width: '$headerWidth',
   height: '$headerHeight',
+  backgroundColor: '$blue500a30',
+  borderRadius: '10px',
 });
 
 const Header = styled('header', {

@@ -7,6 +7,8 @@ export const { styled, globalCss } = createStitches({
   theme: {
     colors: {
       blue500: '#2196F3',
+      blue500a50: 'rgba(33, 150, 243, 0.5)',
+      blue500a30: 'rgba(33, 150, 243, 0.3)',
       blue500light: '#6EC6FF',
       blue500dark: '#0069C0',
       grey500: '#9E9E9E',
