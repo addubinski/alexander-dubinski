@@ -1,11 +1,22 @@
-import { ReactElement } from 'react';
-import { useThree } from '@react-three/fiber';
+import { MutableRefObject, ReactElement, useRef } from 'react';
+import { useFrame, useThree } from '@react-three/fiber';
 import Star from '../meshes/Star';
+import { Group } from 'three';
 
 const RADIUS_DIVISORS = [450, 500, 700, 800];
 
-function Stars(): ReactElement {
+interface StarsProps {
+  scroll: MutableRefObject<number>;
+}
+
+function Stars({ scroll }: StarsProps): ReactElement {
+  const group = useRef<Group>(null!);
   const { size, viewport } = useThree();
+  useFrame(() => {
+    if (group) {
+      group.current.position.y = (viewport.height * scroll.current) / 10;
+    }
+  });
   const starCount = Math.floor((size.height + size.width) / 10);
   const referenceDim = Math.min(viewport.height, viewport.width);
 
@@ -15,9 +26,18 @@ function Stars(): ReactElement {
     const radius =
       referenceDim /
       RADIUS_DIVISORS[Math.floor(Math.random() * RADIUS_DIVISORS.length)];
-    return <Star key={i} position={[x, y, 0]} radius={radius} segments={15} />;
+    const anim = Math.random() <= 0.1;
+    return (
+      <Star
+        key={i}
+        anim={anim}
+        position={[x, y, 0]}
+        radius={radius}
+        segments={15}
+      />
+    );
   });
-  return <>{stars}</>;
+  return <group ref={group}>{stars}</group>;
 }
 
 export default Stars;
