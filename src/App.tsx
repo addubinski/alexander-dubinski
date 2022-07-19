@@ -4,6 +4,8 @@ import { Canvas } from '@react-three/fiber';
 import { globalCss, styled } from './stitches.config';
 import Stars from './components/Stars';
 import Landing from './sections/landing/Landing';
+import { SECTION_COUNT } from './constants';
+import Profile from './sections/profile/Profile';
 
 const globalStyles = globalCss({
   'body, html, #root': {
@@ -29,7 +31,7 @@ const ScrollMonitor = styled('div', {
 });
 
 const ContentContainer = styled('div', {
-  height: '200vh',
+  height: `${100 * SECTION_COUNT}vh`,
 });
 
 function App(): ReactElement {
@@ -56,7 +58,8 @@ function App(): ReactElement {
         }}
       >
         <ContentContainer>
-          <Landing />
+            <Landing />
+            <Profile />
         </ContentContainer>
       </ScrollMonitor>
     </>

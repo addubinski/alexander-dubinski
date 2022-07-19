@@ -2,6 +2,7 @@ import { MutableRefObject, ReactElement, useRef } from 'react';
 import { useFrame, useThree } from '@react-three/fiber';
 import Star from '../meshes/Star';
 import { Group } from 'three';
+import { STAR_ANIMATION_PROBABILITY, STAR_SCROLL_FACTOR } from '../constants';
 
 const RADIUS_DIVISORS = [450, 500, 700, 800];
 
@@ -14,19 +15,20 @@ function Stars({ scroll }: StarsProps): ReactElement {
   const { size, viewport } = useThree();
   useFrame(() => {
     if (group) {
-      group.current.position.y = (viewport.height * scroll.current) / 10;
+      group.current.position.y = viewport.height * scroll.current * STAR_SCROLL_FACTOR;
     }
   });
   const starCount = Math.floor((size.height + size.width) / 10);
-  const referenceDim = Math.min(viewport.height, viewport.width);
+  const sectionDim = Math.min(viewport.height, viewport.width);
 
   const stars: ReactElement[] = new Array(starCount).fill(0).map((_, i) => {
+    const starFieldHeight = viewport.height + viewport.height * STAR_SCROLL_FACTOR * 2;
     const x = Math.random() * viewport.width - viewport.width / 2;
-    const y = Math.random() * viewport.height - viewport.height / 2;
+    const y = Math.random() * starFieldHeight - starFieldHeight / 2;
     const radius =
-      referenceDim /
+      sectionDim /
       RADIUS_DIVISORS[Math.floor(Math.random() * RADIUS_DIVISORS.length)];
-    const anim = Math.random() <= 0.1;
+    const anim = Math.random() <= STAR_ANIMATION_PROBABILITY;
     return (
       <Star
         key={i}
